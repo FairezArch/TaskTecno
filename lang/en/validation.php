@@ -139,7 +139,6 @@ return [
     'beetwen_date' => 'Input must be the same month and year',
     'no_data' => 'No data',
 
-
     /*
     |--------------------------------------------------------------------------
     | Custom Validation Language Lines

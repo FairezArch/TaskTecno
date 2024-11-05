@@ -25,15 +25,15 @@ class UpdateMethodRequest extends FormRequest
     {
         return [
             //
-            'name' => 'required'
+            'name' => 'required',
         ];
     }
 
     public function messages()
     {
-        # code...
+        // code...
         return [
-            'name.required' => 'Tolong input nama method'
+            'name.required' => 'Tolong input nama method',
         ];
     }
 }

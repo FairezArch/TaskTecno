@@ -3,12 +3,12 @@
 namespace App\Models;
 
 use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Collection;
 
 class Method extends Model
@@ -32,9 +32,9 @@ class Method extends Model
 
     public function scopeAllData(Builder $query, array $data): Collection
     {
-        # code...
+        // code...
         $period = collect($data);
-        
+
         $test = $query->with(['task' => function ($query) {
             $query->where('current_year', Carbon::now()->format('Y'));
         }])->orderBy('id')->get();
@@ -46,13 +46,15 @@ class Method extends Model
                         return $dataItem;
                     }
                 })->filter(function ($filterValue, $filterKey) {
-                    return  $filterValue != null;
+                    return $filterValue != null;
                 });
+
                 return [$value => $item];
             });
+
             return [$item, $period];
         });
-        
+
         return $test;
     }
 }

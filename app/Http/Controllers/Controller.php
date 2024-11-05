@@ -18,6 +18,7 @@ class Controller extends BaseController
             'data' => $data,
         ] + $additional)->setStatusCode($statusCode);
     }
+
     public static function fail(?string $message = '', array $additional = [], int $statusCode = 400): \Illuminate\Http\JsonResponse
     {
         return response()->json([

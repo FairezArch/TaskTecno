@@ -23,5 +23,5 @@ return [
     'Ongoing' => 'Ongoing',
     'finished' => 'finished',
     'approach' => 'approach',
-    'assignment' => 'Assignment'
+    'assignment' => 'Assignment',
 ];
