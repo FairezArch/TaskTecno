@@ -6,7 +6,7 @@ use App\Models\Method;
 
 class ActionData
 {
-    protected $model;
+    protected Method $model;
 
     public function __construct(Method $method)
     {
@@ -14,7 +14,7 @@ class ActionData
         $this->model = $method;
     }
 
-    public function store($request)
+    public function store($request): Method
     {
         // code...
         return $this->model->create(['name' => $request->name]);

@@ -20,8 +20,8 @@ class Method extends Model
     protected function name(): Attribute
     {
         return Attribute::make(
-            get: fn ($value) => ucfirst($value),
-            set: fn ($value) => strtolower($value),
+            get: static fn ($value) => ucfirst($value),
+            set: static fn ($value) => strtolower($value),
         );
     }
 

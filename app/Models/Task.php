@@ -23,26 +23,17 @@ class Task extends Model
     protected function name(): Attribute
     {
         return Attribute::make(
-            get: fn ($value) => ucfirst($value),
-            set: fn ($value) => strtolower($value),
+            get: static fn ($value) => ucfirst($value),
+            set: static fn ($value) => strtolower($value),
         );
     }
 
-    // protected function getDateFromTabAttribute()
-    // {
-    //     return Carbon::createFromFormat(config('app.date_input_format'), $this->date_from)->translatedFormat(config('app.date_format_month'));
-    // }
-
-    // protected function getDateToTabAttribute()
-    // {
-    //     return Carbon::createFromFormat(config('app.date_input_format'), $this->date_to)->translatedFormat(config('app.date_format_month'));
-    // }
-    protected function getDateFromTabAttribute()
+    protected function getDateFromTabAttribute(): string
     {
         return Carbon::createFromFormat(config('app.date_input_format'), $this->date_from)->format(config('app.date_format_id'));
     }
 
-    protected function getDateToTabAttribute()
+    protected function getDateToTabAttribute(): string
     {
         return Carbon::createFromFormat(config('app.date_input_format'), $this->date_to)->format(config('app.date_format_id'));
     }
@@ -60,7 +51,7 @@ class Task extends Model
         }
     }
 
-    const periodMonth = [
+    public const periodMonth = [
         '1' => 'January',
         '2' => 'February',
         '3' => 'March',

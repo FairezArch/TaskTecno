@@ -6,7 +6,7 @@ use App\Models\Task;
 
 class ActionData
 {
-    protected $model;
+    protected Task $model;
 
     public function __construct(Task $task)
     {
@@ -14,7 +14,7 @@ class ActionData
         $this->model = $task;
     }
 
-    public function store($request, $extraData = [])
+    public function store($request, $extraData = []): Task
     {
         // code...
         $data = [
