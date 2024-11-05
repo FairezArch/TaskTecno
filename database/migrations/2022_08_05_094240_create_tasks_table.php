@@ -20,7 +20,7 @@ return new class extends Migration
             $table->date('date_from')->nullable();
             $table->date('date_to')->nullable();
             $table->timestamps();
-            $table->softDeletes(); // Soft delete 
+            $table->softDeletes(); // Soft delete
 
             $table->foreign('method_id')->references('id')->on('methods');
         });

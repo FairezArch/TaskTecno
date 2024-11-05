@@ -32,7 +32,7 @@ class StoreTaskRequest extends FormRequest
 
     public function messages()
     {
-        # code...
+        // code...
         return [
             'method.required' => 'Mohon untuk pilih metode / buat terlebih dahulu jika belum memiliki methode',
             'name.required' => 'Tolong input nama task',

@@ -6,28 +6,29 @@ use App\Models\Method;
 
 class ActionData
 {
-
     protected $model;
 
     public function __construct(Method $method)
     {
-        # code...
+        // code...
         $this->model = $method;
     }
 
     public function store($request)
     {
-        # code...
+        // code...
         return $this->model->create(['name' => $request->name]);
     }
+
     public function update($request, $modelData)
     {
-        # code...
+        // code...
         return $modelData->update(['name' => $request->name]);
     }
+
     public function delete($modelData)
     {
-        # code...
+        // code...
         return $modelData->delete();
     }
 }

@@ -2,12 +2,12 @@
 
 namespace App\Models;
 
-use Illuminate\Support\Carbon;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Casts\Attribute;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Carbon;
 
 class Task extends Model
 {
@@ -28,7 +28,7 @@ class Task extends Model
         );
     }
 
-    // protected function getDateFromTabAttribute() 
+    // protected function getDateFromTabAttribute()
     // {
     //     return Carbon::createFromFormat(config('app.date_input_format'), $this->date_from)->translatedFormat(config('app.date_format_month'));
     // }
@@ -37,7 +37,7 @@ class Task extends Model
     // {
     //     return Carbon::createFromFormat(config('app.date_input_format'), $this->date_to)->translatedFormat(config('app.date_format_month'));
     // }
-    protected function getDateFromTabAttribute() 
+    protected function getDateFromTabAttribute()
     {
         return Carbon::createFromFormat(config('app.date_input_format'), $this->date_from)->format(config('app.date_format_id'));
     }
