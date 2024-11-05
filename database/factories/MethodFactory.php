@@ -18,7 +18,7 @@ class MethodFactory extends Factory
     {
         return [
             //
-            'name' => fake()->name
+            'name' => fake()->name,
         ];
     }
 }
