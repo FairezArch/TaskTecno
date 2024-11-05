@@ -23,7 +23,7 @@ class MethodController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
+     * @return Application|Factory|View|\Illuminate\View\View
      */
     public function index(): Application|Factory|View|\Illuminate\View\View
     {
@@ -34,7 +34,8 @@ class MethodController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * @param  StoreMethodRequest  $request
+     * @return JsonResponse
      */
     public function store(StoreMethodRequest $request): JsonResponse
     {
@@ -45,7 +46,8 @@ class MethodController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * @param  Method  $method
+     * @return JsonResponse
      */
     public function edit(Method $method): JsonResponse
     {
@@ -53,7 +55,9 @@ class MethodController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * @param  UpdateMethodRequest  $request
+     * @param  Method  $method
+     * @return JsonResponse
      */
     public function update(UpdateMethodRequest $request, Method $method): JsonResponse
     {
@@ -64,7 +68,8 @@ class MethodController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * @param  Method  $method
+     * @return JsonResponse
      */
     public function destroy(Method $method): JsonResponse
     {

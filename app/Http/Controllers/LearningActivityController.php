@@ -9,7 +9,7 @@ use Illuminate\Contracts\View\View;
 class LearningActivityController extends Controller
 {
     /**
-     * Summary of index
+     * @return View
      */
     public function index(): View
     {
