@@ -8,13 +8,15 @@ use App\Models\Method;
 use App\Models\Task;
 use App\Services\Task\ActionData;
 use Carbon\Carbon;
-use Illuminate\Http\Response;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\JsonResponse;
+use Symfony\Component\HttpFoundation\Response;
 
 class TaskController extends Controller
 {
-    protected $service;
-    protected $c_month;
-    protected $c_year;
+    protected ActionData $service;
+    protected string $c_month;
+    protected string $c_year;
 
     public function __construct(ActionData $Task)
     {
@@ -25,11 +27,9 @@ class TaskController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     * @return View
      */
-    public function index()
+    public function index(): View
     {
         //
         $tasks = Task::with('method')->get();
@@ -39,84 +39,64 @@ class TaskController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
-     * @return \Illuminate\Http\Response
+     * @return JsonResponse
      */
-    public function store(StoreTaskRequest $request)
+    public function store(StoreTaskRequest $request): JsonResponse
     {
         //
         $date1 = Carbon::createFromFormat(config('app.date_input_format'), $request->date_from);
         $date2 = Carbon::createFromFormat(config('app.date_input_format'), $request->date_to);
         if (($date1->format('m') !== $date2->format('m')) || ($date1->format('Y') !== $date2->format('Y'))) {
-            return $this->fail(__('validation.beetwen_date'), ['errors' => ['beetwen-date' => __('validation.beetwen_date')]], Response::HTTP_UNPROCESSABLE_ENTITY);
+            return self::fail(__('validation.beetwen_date'), ['errors' => ['beetwen-date' => __('validation.beetwen_date')]], Response::HTTP_UNPROCESSABLE_ENTITY);
         }
 
         $action = $this->service->store($request, [$this->c_month => $date1->format('F'), $this->c_year => $date1->format('Y')]);
 
-        return $action ? $this->success() : $this->fail(__('auth.something_went_wrong'));
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Task $task)
-    {
-        //
+        return $action ? self::success() : self::fail(__('auth.something_went_wrong'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return JsonResponse
      */
-    public function edit(Task $task)
+    public function edit(Task $task): JsonResponse
     {
         //
-        return $this->success($task, [], 200);
+        return self::success($task, [], 200);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @return \Illuminate\Http\Response
+     * @return JsonResponse
      */
-    public function update(UpdateTaskRequest $request, Task $task)
+    public function update(UpdateTaskRequest $request, Task $task): JsonResponse
     {
         //
         $date1 = Carbon::createFromFormat(config('app.date_input_format'), $request->date_from);
         $date2 = Carbon::createFromFormat(config('app.date_input_format'), $request->date_to);
         if (($date1->format('m') !== $date2->format('m')) || ($date1->format('Y') !== $date2->format('Y'))) {
-            return $this->fail(__('validation.beetwen_date'), ['errors' => ['beetwen-date' => __('validation.beetwen_date')]], 422);
+            return self::fail(__('validation.beetwen_date'), ['errors' => ['beetwen-date' => __('validation.beetwen_date')]], 422);
         }
 
         $action = $this->service->update($request, $task, [$this->c_month => $date1->format('F'), $this->c_year => $date1->format('Y')]);
 
-        return $action ? $this->success([], [], Response::HTTP_ACCEPTED) : $this->fail(__('auth.something_went_wrong'));
+        return $action ? self::success([], [], Response::HTTP_ACCEPTED) : self::fail(__('auth.something_went_wrong'));
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @return \Illuminate\Http\Response
+     * @return JsonResponse
      */
-    public function destroy(Task $task)
+    public function destroy(Task $task): JsonResponse
     {
         //
         $action = $this->service->delete($task);
 
-        return $action ? $this->success([], [], Response::HTTP_NO_CONTENT) : $this->fail(__('auth.something_went_wrong'));
+        return $action ? self::success([], [], Response::HTTP_NO_CONTENT) : self::fail(__('auth.something_went_wrong'));
     }
 }
