@@ -36,7 +36,12 @@
                                                                 {{ $list->DateToTab }})</small>
                                                             <br />
                                                             <span
-                                                                class="badge rounded-pill bg-info text-white">{{ $list->NameStatus }}</span>
+                                                                class="badge
+                                                                    rounded-pill
+                                                                    bg-info
+                                                                    text-white">
+                                                                {{ $list->NameStatus }}
+                                                            </span>
                                                         </li>
                                                     </ul>
                                                 @endforeach
