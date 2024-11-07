@@ -136,7 +136,7 @@ return [
     'uploaded' => 'The :attribute failed to upload.',
     'url' => 'The :attribute must be a valid URL.',
     'uuid' => 'The :attribute must be a valid UUID.',
-    'beetwen_date' => 'Input must be the same month and year',
+    'between_date' => 'Input must be the same month and year',
     'no_data' => 'No data',
 
     /*

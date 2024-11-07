@@ -116,7 +116,7 @@ return [
     'uploaded' => ':attribute gagal diunggah.',
     'url' => 'Format :attribute tidak valid.',
     'uuid' => ':attribute harus merupakan UUID yang valid.',
-    'beetwen_date' => 'Input harus bulan dan tahun yang sama',
+    'between_date' => 'Input harus bulan dan tahun yang sama',
     'no_data' => 'Tidak ada data yang disajikan',
     /*
     |---------------------------------------------------------------------------------------
