@@ -21,7 +21,7 @@ class TaskFactory extends Factory
             'updated_at' => Carbon::now(),
             'current_month' => $this->faker->word(),
             'current_year' => $this->faker->randomNumber(),
-            'status' => $this->faker->randomNumber(),
+            'status' => $this->faker->boolean(),
 
             'method_id' => Method::factory(),
         ];

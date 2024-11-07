@@ -49,7 +49,7 @@ class TaskController extends Controller
         $date1 = Carbon::createFromFormat(config('app.date_input_format'), $request->date_from);
         $date2 = Carbon::createFromFormat(config('app.date_input_format'), $request->date_to);
         if (($date1->format('m') !== $date2->format('m')) || ($date1->format('Y') !== $date2->format('Y'))) {
-            return self::fail(__('validation.beetwen_date'), ['errors' => ['beetwen-date' => __('validation.beetwen_date')]], Response::HTTP_UNPROCESSABLE_ENTITY);
+            return self::fail(__('validation.between_date'), ['errors' => ['between-date' => __('validation.between_date')]], Response::HTTP_UNPROCESSABLE_ENTITY);
         }
 
         $action = $this->service->store($request, [$this->c_month => $date1->format('F'), $this->c_year => $date1->format('Y')]);
@@ -79,7 +79,7 @@ class TaskController extends Controller
         $date1 = Carbon::createFromFormat(config('app.date_input_format'), $request->date_from);
         $date2 = Carbon::createFromFormat(config('app.date_input_format'), $request->date_to);
         if (($date1->format('m') !== $date2->format('m')) || ($date1->format('Y') !== $date2->format('Y'))) {
-            return self::fail(__('validation.beetwen_date'), ['errors' => ['beetwen-date' => __('validation.beetwen_date')]], 422);
+            return self::fail(__('validation.between_date'), ['errors' => ['between-date' => __('validation.between_date')]], 422);
         }
 
         $action = $this->service->update($request, $task, [$this->c_month => $date1->format('F'), $this->c_year => $date1->format('Y')]);
