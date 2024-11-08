@@ -12,11 +12,6 @@ class TaskTest extends TestCase
 {
     use RefreshDatabase, WithFaker;
 
-    protected function setUp(): void
-    {
-        parent::setUp();
-    }
-
     public function test_can_access_index(): void
     {
         $response = $this->get(route('task.index'));
