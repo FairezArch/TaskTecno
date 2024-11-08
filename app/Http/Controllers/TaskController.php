@@ -10,6 +10,7 @@ use App\Services\Task\ActionData;
 use Carbon\Carbon;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\DB;
 use Symfony\Component\HttpFoundation\Response;
 
 class TaskController extends Controller
@@ -52,7 +53,9 @@ class TaskController extends Controller
             return self::fail(__('validation.between_date'), ['errors' => ['between-date' => __('validation.between_date')]], Response::HTTP_UNPROCESSABLE_ENTITY);
         }
 
-        $action = $this->service->store($request, [$this->c_month => $date1->format('F'), $this->c_year => $date1->format('Y')]);
+        $action = DB::transaction(function () use ($request, $date1) {
+            return $this->service->store($request, [$this->c_month => $date1->format('F'), $this->c_year => $date1->format('Y')]);
+        });
 
         return $action ? self::success() : self::fail(__('auth.something_went_wrong'));
     }
@@ -82,7 +85,9 @@ class TaskController extends Controller
             return self::fail(__('validation.between_date'), ['errors' => ['between-date' => __('validation.between_date')]], 422);
         }
 
-        $action = $this->service->update($request, $task, [$this->c_month => $date1->format('F'), $this->c_year => $date1->format('Y')]);
+        $action = DB::transaction(function () use ($request, $date1, $task) {
+            return $this->service->update($request, $task, [$this->c_month => $date1->format('F'), $this->c_year => $date1->format('Y')]);
+        });
 
         return $action ? self::success([], [], Response::HTTP_ACCEPTED) : self::fail(__('auth.something_went_wrong'));
     }
@@ -95,7 +100,9 @@ class TaskController extends Controller
     public function destroy(Task $task): JsonResponse
     {
         //
-        $action = $this->service->delete($task);
+        $action = DB::transaction(function () use ($task) {
+            return $this->service->delete($task);
+        });
 
         return $action ? self::success([], [], Response::HTTP_NO_CONTENT) : self::fail(__('auth.something_went_wrong'));
     }

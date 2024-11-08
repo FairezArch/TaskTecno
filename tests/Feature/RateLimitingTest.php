@@ -6,6 +6,7 @@ use Tests\TestCase;
 
 class RateLimitingTest extends TestCase
 {
+
     public function test_rate_limiting(): void
     {
         $limit = 60;
