@@ -10,6 +10,7 @@ use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\DB;
 use Symfony\Component\HttpFoundation\Response;
 
 class MethodController extends Controller
@@ -40,7 +41,9 @@ class MethodController extends Controller
     public function store(StoreMethodRequest $request): JsonResponse
     {
         //
-        $action = $this->service->store($request);
+        $action = DB::transaction(function () use ($request) {
+            return $this->service->store($request);
+        });
 
         return $action ? self::success() : self::fail(__('auth.something_went_wrong'));
     }
@@ -62,7 +65,9 @@ class MethodController extends Controller
     public function update(UpdateMethodRequest $request, Method $method): JsonResponse
     {
         //
-        $action = $this->service->update($request, $method);
+        $action = DB::transaction(function () use ($request, $method) {
+            return $this->service->update($request, $method);
+        });
 
         return $action ? self::success([], [], Response::HTTP_ACCEPTED) : self::fail(__('auth.something_went_wrong'));
     }
@@ -74,7 +79,9 @@ class MethodController extends Controller
     public function destroy(Method $method): JsonResponse
     {
         //
-        $action = $this->service->delete($method);
+        $action = DB::transaction(function () use ($method) {
+            return $this->service->delete($method);
+        });
 
         return $action ? self::success([], [], Response::HTTP_NO_CONTENT) : self::fail(__('auth.something_went_wrong'));
     }

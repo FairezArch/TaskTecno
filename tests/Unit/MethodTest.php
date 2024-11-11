@@ -4,15 +4,19 @@ namespace Tests\Unit;
 
 use App\Models\Method;
 use App\Models\Task;
+use App\Services\Method\ActionData;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Mockery;
 use Tests\TestCase;
 
 class MethodTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_has_many_tasks()
+    public function test_has_many_tasks(): void
     {
         $method = Method::factory()->create();
         $task = Task::factory()->create(['method_id' => $method->id]);
@@ -20,7 +24,7 @@ class MethodTest extends TestCase
         $this->assertTrue($method->task->contains($task));
     }
 
-    public function test_filters_and_maps_data_correctly_in_scopeAllData()
+    public function test_filters_and_maps_data_correctly_in_scopeAllData(): void
     {
         $data = ['2024', '2023'];
 
@@ -53,7 +57,7 @@ class MethodTest extends TestCase
         $this->assertFalse($result->first()[0]['task']->contains('current_year', '2023'));
     }
 
-    public function test_maps_data_based_on_current_month()
+    public function test_maps_data_based_on_current_month(): void
     {
         $data = ['January', 'February', 'March'];
 
@@ -91,5 +95,4 @@ class MethodTest extends TestCase
             return $task->current_month === 'April';
         }));
     }
-
 }
