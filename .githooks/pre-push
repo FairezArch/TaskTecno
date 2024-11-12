@@ -6,4 +6,4 @@ echo "Laravel Pint..."
 
 # Laravel Test
 echo "Laravel Unit Test..."
-php artisan test --parallel --recreate-databases --coverage --min=72
+php artisan test --parallel --recreate-databases --coverage --min=75
