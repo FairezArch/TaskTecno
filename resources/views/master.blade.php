@@ -30,17 +30,7 @@
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
     <script>
-        $(document).ready(function() {
-            // $.each($('.navbar-nav').find('li'), function() {
-            //     $(this).toggleClass('active',
-            //         window.location.pathname.indexOf($(this).find('a').attr('href')) > -1);
-            // });
-
-            // $('.navbar-nav').on('click', 'a', function() {
-            //     $('.navbar-nav a.active').removeClass('active')
-            //     $(this).addClass('active');
-            // })
-        });
+        $(document).ready(function() {});
     </script>
     @yield('script')
 </body>
