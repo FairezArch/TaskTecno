@@ -116,7 +116,6 @@
             </div>
         </div>
     </div>
-
     <!-- end bootstrap model -->
 @endsection
 

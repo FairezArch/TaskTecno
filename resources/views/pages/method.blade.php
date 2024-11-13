@@ -1,6 +1,4 @@
 @extends('master')
-
-
 @section('content')
     <section>
         <div class="shadow-sm p-3 bg-white rounded w-100">
@@ -77,7 +75,6 @@
             </div>
         </div>
     </div>
-
     <!-- end bootstrap model -->
 @endsection
 
