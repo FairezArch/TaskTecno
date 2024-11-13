@@ -42,6 +42,7 @@ class TaskController extends Controller
     /**
      * Store a newly created resource in storage.
      *
+     * @param  StoreTaskRequest  $request
      * @return JsonResponse
      */
     public function store(StoreTaskRequest $request): JsonResponse
@@ -63,6 +64,7 @@ class TaskController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
+     * @param  Task  $task
      * @return JsonResponse
      */
     public function edit(Task $task): JsonResponse
@@ -74,6 +76,8 @@ class TaskController extends Controller
     /**
      * Update the specified resource in storage.
      *
+     * @param  UpdateTaskRequest  $request
+     * @param  Task  $task
      * @return JsonResponse
      */
     public function update(UpdateTaskRequest $request, Task $task): JsonResponse
@@ -95,6 +99,7 @@ class TaskController extends Controller
     /**
      * Remove the specified resource from storage.
      *
+     * @param  Task  $task
      * @return JsonResponse
      */
     public function destroy(Task $task): JsonResponse

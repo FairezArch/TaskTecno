@@ -59,5 +59,4 @@ class Task extends Model
         '5' => 'May',
         '6' => 'June',
     ];
-
 }
